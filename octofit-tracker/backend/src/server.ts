@@ -1,5 +1,6 @@
 import express from 'express';
 import type { ErrorRequestHandler } from 'express';
+import cors from 'cors';
 
 import './config/database.js';
 import { Activity } from './models/activity.js';
@@ -14,7 +15,12 @@ const codespaceName = process.env.CODESPACE_NAME;
 const baseUrl = codespaceName
   ? `https://${codespaceName}-8000.app.github.dev`
   : `http://localhost:${port}`;
+const frontendUrl = codespaceName
+  ? `https://${codespaceName}-5173.app.github.dev`
+  : 'http://localhost:5173';
+const allowedOrigins = ['http://localhost:5173', frontendUrl];
 
+app.use(cors({ origin: allowedOrigins }));
 app.use(express.json());
 
 app.get('/api/health', (_request, response) => {
