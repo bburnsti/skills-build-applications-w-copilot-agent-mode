@@ -1,8 +1,10 @@
 import ViewState from './ViewState.jsx'
 import { useCollection } from './useCollection.js'
 
+const endpointPath = '/api/workouts/'
+
 export default function Workouts() {
-  const { items: workouts, status, error } = useCollection('workouts')
+  const { items: workouts, status, error } = useCollection('workouts', endpointPath)
 
   return (
     <section className="page-section">

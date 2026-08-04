@@ -20,8 +20,9 @@ export function normalizeCollection(payload, collectionName) {
   return candidates.find(Array.isArray) ?? []
 }
 
-export async function fetchCollection(collectionName) {
-  const response = await fetch(`${API_BASE_URL}/${collectionName}/`)
+export async function fetchCollection(collectionName, endpointPath = `/api/${collectionName}/`) {
+  const apiPath = endpointPath.replace(/^\/api/, '')
+  const response = await fetch(`${API_BASE_URL}${apiPath}`)
 
   if (!response.ok) {
     throw new Error(`Request failed with status ${response.status}`)

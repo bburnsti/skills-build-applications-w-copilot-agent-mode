@@ -1,8 +1,10 @@
 import ViewState from './ViewState.jsx'
 import { useCollection } from './useCollection.js'
 
+const endpointPath = '/api/teams/'
+
 export default function Teams() {
-  const { items: teams, status, error } = useCollection('teams')
+  const { items: teams, status, error } = useCollection('teams', endpointPath)
 
   return (
     <section className="page-section">

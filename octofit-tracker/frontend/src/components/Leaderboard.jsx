@@ -1,8 +1,10 @@
 import ViewState from './ViewState.jsx'
 import { useCollection } from './useCollection.js'
 
+const endpointPath = '/api/leaderboard/'
+
 export default function Leaderboard() {
-  const { items: leaderboard, status, error } = useCollection('leaderboard')
+  const { items: leaderboard, status, error } = useCollection('leaderboard', endpointPath)
 
   return (
     <section className="page-section">
